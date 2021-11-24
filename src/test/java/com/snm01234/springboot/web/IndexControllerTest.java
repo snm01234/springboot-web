@@ -22,6 +22,6 @@ public class IndexControllerTest {
         String body = this.restTemplate.getForObject("/", String.class);
 
         //then
-        assertThat(body).contains("스프링부트 웹 메인 페이지"); // 해당 문자열 존재하는지 검증
+        assertThat(body).contains("스프링부트 웹 서비스"); // 해당 문자열 존재하는지 검증
     }
 }

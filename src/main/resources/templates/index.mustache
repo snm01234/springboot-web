@@ -9,7 +9,9 @@
                 <a href="/logout" class="btn btn-info active" role="button">로그아웃</a>
                 {{/loginName}}
                 {{^loginName}}
-                    <a href="/oauth2/authorization/google" class="btn btn-light active" role="button">Google 로그인</a>
+                    <a href="/oauth2/authorization/google" class="btn btn-light active" role="button">Google 계정으로 로그인</a>
+                    <a href="/oauth2/authorization/naver" class="btn btn-success" role="button">네이버 계정으로 로그인</a>
+                    <a href="/oauth2/authorization/kakao" class="btn btn-warning" role="button">카카오 계정으로 로그인</a>
                 {{/loginName}}
             </div>
         </div>
