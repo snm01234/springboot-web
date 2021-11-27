@@ -15,6 +15,13 @@
                 {{/loginName}}
             </div>
         </div>
+        <form class="form-inline d-flex justify-content-end">
+            <div class="form-group mx-sm-3 mb-2">
+                <label for="searchText" class="sr-only">검색</label>
+                <input type="text" class="form-control" id="searchText" name="searchText">
+            </div>
+            <button type="submit" class="btn btn-primary mb-2">검색</button>
+        </form>
         <br>
         <!-- 목록 출력 영역 -->
         <table class="table table-horizontal table-bordered">
@@ -37,5 +44,16 @@
             {{/posts}}
             </tbody>
         </table>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                    <li class="page-item"><a class="page-link" href="?page={{previous}}">Previous</a></li>
+                {{#check}}
+                    <li class="page-item"><a class="page-link" href="?page={{next}}">Next</a></li>
+                {{/check}}
+                {{^check}}
+                    <li class="page-item disabled"><a class="page-link" href="?page={{next}}">Next</a></li>
+                {{/check}}
+            </ul>
+        </nav>
     </div>
 {{>layout/footer}}
