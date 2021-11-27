@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 
 @RequiredArgsConstructor
 @Controller
@@ -35,21 +36,19 @@ public class IndexController {
         model.addAttribute("posts", posts);
         model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());
         model.addAttribute("next", pageable.next().getPageNumber());
-        model.addAttribute("check", postsService.getListCheck(pageable));
+        model.addAttribute("check", postsService.getListCheck(pageable)); // 마지막 페이지인지 체크용
+        model.addAttribute("check2", postsService.getListCheck2(pageable)); // 첫번쨰 페이지인지 체크용
+        ArrayList pageIndex = new ArrayList();
+        for(int i=0; i < posts.getTotalPages(); i++) {
+            pageIndex.add(i);
+        }
+        model.addAttribute("pageIndex", pageIndex);
+
         if(user != null) { // 세션에 저장된 값이 없으면 model에 값이 없어서 로그인 버튼이 보이게끔
             model.addAttribute("loginName", user.getName());
         }
         return "index";
     }
-
-    /*@GetMapping("/posts/search")
-    public String search(String title, String content,
-                         @PageableDefault(size = 2, sort = "id", direction = Sort.Direction.DESC) Pageable pageable, Model model) {
-        Page<Posts> searchList = postsService.search(title, content, pageable);
-        model.addAttribute("searchList", searchList);
-        return "posts-search";
-    }*/
-
 
     @GetMapping("/posts/save")
     public String postsSave(Model model, @LoginUser SessionUser user) {

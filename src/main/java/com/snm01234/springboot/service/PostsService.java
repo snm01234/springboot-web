@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -62,6 +63,13 @@ public class PostsService {
         Boolean check = saved.hasNext(); // next가 있으면 true
 
         return check;
+    }
+
+    @Transactional
+    public Boolean getListCheck2(Pageable pageable) {
+        Page<Posts> saved = getPostsList(pageable);
+        Boolean check2 = saved.isFirst(); // 첫번째 페이지면 true
+        return check2;
     }
 
     public PostsResponseDto findById(Long id) {
