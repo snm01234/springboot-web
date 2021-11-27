@@ -19,6 +19,11 @@
             </div>
         </form>
         <a href="/" role="button" class="btn btn-secondary">취소</a>
+        <h1>file upload</h1>
+        <form method="post" action="/upload" enctype="multipart/form-data">
+            <input type="file" name="uploadfile" multiple="multiple">
+            <input type="submit">
+        </form>
         <button type="button" class="btn btn-primary" id="btn-save">등록</button>
     </div>
 </div>
