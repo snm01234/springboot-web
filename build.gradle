@@ -11,6 +11,9 @@ sourceCompatibility = 1.8
 repositories {
     mavenCentral()
 }
+jar {
+    enabled = false
+}
 
 // for Junit 5
 test { // (2)
