@@ -6,7 +6,15 @@
 
 -changelog
 
-2021--11-29 작업
+2021-12-01 작업
+
+github Actions로 CI 배포 환경 설정
+
+Actions, S3, CodeDeploy 연동 작업까지 완료
+
+nginx 설정은 아직 오류가 나서 완료 못함
+
+2021-11-29 작업
 
 AWS EC2 인스턴스 생성, Elastic IP로 IP고정
 
