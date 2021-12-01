@@ -1,6 +1,6 @@
-#logging-deploy.yml
+#springboot-web-deploy.yml
 
-name: logging-system
+name: springboot-web-CI
 
 on:
   workflow_dispatch:
