@@ -4,6 +4,9 @@ name: springboot-web-CI
 
 on:
   workflow_dispatch:
+env:
+  S3_BUCKET_NAME: springboot-webpage-build
+  PROJECT_NAME: springboot-web
 
 jobs:
   build:
