@@ -2,7 +2,7 @@ version : 0.0
 os: linux
 files:
   - source: /
-    destination: /home/ec2-user/app/step3/zip/
+    destination: /home/ec2-user/app/step2/zip/
     overwrite: yes
 
 permissions:
@@ -11,14 +11,3 @@ permissions:
     owner: ec2-user
     group: ec2-user
 
-hooks:
-  ApplicationStart:
-    - location: scripts/run_new_was.sh
-      timeout: 180
-      runas: ec2-user
-    - location: scripts/health_check.sh
-      timeout: 180
-      runas: ec2-user
-    - location: scripts/switch.sh
-      timeout: 180
-      runas: ec2-user
