@@ -13,7 +13,7 @@ echo "> cp $REPOSITORY/zip/build/libs/*.jar $REPOSITORY/"
 cp $REPOSITORY/zip/*.jar $REPOSITORY/
 
 echo "> 새 어플리케이션 배포"
-JAR_NAME=$(ls -tr $REPOSITORY/build/libs/*.jar | tail -n 1)
+JAR_NAME=$(ls -tr $REPOSITORY/*.jar | tail -n 1)
 
 echo "> JAR Name: $JAR_NAME"
 
