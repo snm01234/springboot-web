@@ -6,6 +6,27 @@
 
 -changelog
 
+2021-12-02 작업
+
+Actions, S3, CodeDeploy 연동으로 Test & Build는 되는데 정작 배포 자동화가 되지 않는 문제가 생겨서 찾아보았다.
+
+nohub.out에 log를 확인해보니 application-real이 oauth 인식을 못하는 문제
+
+springboot 2.4 이상에서 spring.profiles.include 등의 문법은 deprecated 되었기 때문에 
+
+application.properties에서 spring.profiles.group으로 관리 
+
+그 외에 코드에서 경로 등이 잘못 설정되어있는 것을 수정하여서 문제 해결
+
+nginx 배포 환경 구축을 위한 설정
+
+oauth redirect 주소 추가
+
+health check 용 profile api, 테스트코드 작성, 배포를 위한 스크립트 작성하고 appspec.yml에서 수행
+
+nginx로 서버 중단 없이 배포하는 무중단 배포 성공하였고 드디어 CI/CD 환경이 모두 구축되었음.
+
+
 2021-12-01 작업
 
 github Actions로 CI 배포 환경 설정
