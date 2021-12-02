@@ -5,7 +5,7 @@ PROJECT_NAME=springboot-web
 
 echo "> Build 파일 복사"
 
-cp $REPOSITORY/zip/*.jar $REPOSITORY/
+cp $REPOSITORY/zip/build/libs/*.jar $REPOSITORY/
 
 echo "> 현재 구동 중인 애플리케이션 pid 확인"
 
@@ -23,7 +23,7 @@ fi
 
 echo "새 애플리케이션 배포"
 
-JAR_NAME=$(ls -tr $REPOSITORY/*.jar|tail -n 1)
+JAR_NAME=$(ls -tr $REPOSITORY/build/libs/*.jar|tail -n 1)
 
 echo "> JAR Name: $JAR_NAME"
 
