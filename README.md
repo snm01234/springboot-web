@@ -10,6 +10,7 @@
 + Spring Boot (2.5.6)
 + JUnit5
 + JPA
++ Lombok
 + Spring Security, OAuth2
 + Mustache 
 + Gradle (7.1)
