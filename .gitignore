@@ -4,6 +4,7 @@
 .idea
 
 application-oauth.properties
+aws.properties
 
 build
 out
