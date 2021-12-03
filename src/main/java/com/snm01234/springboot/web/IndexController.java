@@ -41,6 +41,7 @@ public class IndexController {
         //model.addAttribute("posts", postsService.findAllDesc());
         //model.addAttribute("posts", postsService.getPostsList(pageable));
         Page<Posts> posts = postsService.search(searchText, searchText, pageable);
+        model.addAttribute("searchText", searchText);
         model.addAttribute("posts", posts);
         model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());
         model.addAttribute("next", pageable.next().getPageNumber());

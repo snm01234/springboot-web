@@ -18,7 +18,7 @@
         <form class="form-inline d-flex justify-content-end">
             <div class="form-group mx-sm-3 mb-2">
                 <label for="searchText" class="sr-only">검색</label>
-                <input type="text" class="form-control" id="searchText" name="searchText">
+                <input type="text" class="form-control" id="searchText" name="searchText" value={{searchText}}>
             </div>
             <button type="submit" class="btn btn-primary mb-2">검색</button>
         </form>
@@ -47,19 +47,19 @@
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
                 {{#check2}}
-                    <li class="page-item disabled"><a class="page-link" href="?page={{previous}}">Previous</a></li>
+                    <li class="page-item disabled"><a class="page-link" href="?page={{previous}}&searchText={{searchText}}">Previous</a></li>
                 {{/check2}}
                 {{^check2}}
-                    <li class="page-item"><a class="page-link" href="?page={{previous}}">Previous</a></li>
+                    <li class="page-item"><a class="page-link" href="?page={{previous}}&searchText={{searchText}}">Previous</a></li>
                 {{/check2}}
                 {{#pageIndex}}
-                    <li class="page-item"><a class="page-link" href="?page={{.}}">{{.}}</a></li>
+                    <li class="page-item"><a class="page-link" href="?page={{.}}&searchText={{searchText}}">{{.}}</a></li>
                 {{/pageIndex}}
                 {{#check}}
-                    <li class="page-item"><a class="page-link" href="?page={{next}}">Next</a></li>
+                    <li class="page-item"><a class="page-link" href="?page={{next}}&searchText={{searchText}}">Next</a></li>
                 {{/check}}
                 {{^check}}
-                    <li class="page-item disabled"><a class="page-link" href="?page={{next}}">Next</a></li>
+                    <li class="page-item disabled"><a class="page-link" href="?page={{next}}&searchText={{searchText}}">Next</a></li>
                 {{/check}}
             </ul>
         </nav>
