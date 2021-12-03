@@ -1,8 +1,29 @@
 # springboot-web
 
-스프링부트 웹서비스 제작 연습
+ 스프링부트 웹서비스 제작 및 배포 연습을 위한 프로젝트입니다.
 
 -------------
+
+
+[개발 환경]
++ JAVA (1.8, Open JDK)
++ Spring Boot (2.5.6)
++ JUnit5
++ JPA
++ Spring Security, OAuth2
++ Mustache 
++ Gradle (7.1)
++ IntelliJ Community 
++ H2 Database 
+
+[서버 배포 환경]
++ AWS EC2, RDS(MariaDB 10.5), S3, CodeDeploy
++ Github Actions 
++ NginX
+
+-------------
+
+
 
 -changelog
 
