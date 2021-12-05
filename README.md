@@ -30,9 +30,13 @@
 
 2021-12-05 작업
 
-로컬 환경에서 S3에 파일 업로드 기능 구현하고 동작 확인
+로컬 환경에서 S3 버킷에 파일 업로드 기능 구현하고 동작 확인
 
-삭제 api는 fileName으로 받는 걸로 구현했지만 아직 DB에 fileName 저장하는 걸 미구현
+삭제 api는 fileName으로 받는 걸로 만들었지만 아직 fileName 이름을 처리하는 부분 미구현
+
+db에 fileName 받아서 url 저장하는 것까지 구현 
+
+수정 페이지에서 파일 업로드, 삭제 기능 보완 필요, fileName=null이면 오류발생
 
 서버 환경에서는 ec2에 application-aws, credentials 파일 추가하고 deploy코드에도 추가해서 추후 동작확인해보자 
 

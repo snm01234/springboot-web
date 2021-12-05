@@ -25,7 +25,8 @@ var main = {
         var data = {
             title: $('#title').val(),
             author: $('#author').val(),
-            content: $('#content').val()
+            content: $('#content').val(),
+            fileName: $('#file-name').val()
         };
 
         $.ajax({
@@ -95,6 +96,7 @@ var main = {
         var formData = new FormData();
         formData.append('data', file);
 
+
         $.ajax({
             type: 'POST',
             url: '/api/v1/upload',
@@ -103,6 +105,7 @@ var main = {
             contentType: false
         }).done(function (data) {
             $('#result-image').attr("src", data);
+            $('#file-name').attr("value", data);
         }).fail(function (error) {
             alert(error);
         });
