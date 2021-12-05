@@ -4,7 +4,9 @@
 .idea
 
 application-oauth.properties
+application-credentials.properties
 aws.properties
+
 
 build
 out
