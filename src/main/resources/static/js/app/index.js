@@ -12,6 +12,14 @@ var main = {
         $('#btn-delete').on('click', function () {
             _this.delete();
         });
+
+        $('#btn-upload').on('click', function () {
+            _this.uploadImage();
+        });
+
+        $('#btn-deleteFile').on('click', function () {
+            _this.deleteImage();
+        });
     },
     save : function () {
         var data = {
@@ -81,7 +89,39 @@ var main = {
             alert('본인만 삭제할 수 있습니다.');
             window.location.href = '/';
         }
+    },
+    uploadImage : function () {
+        var file = $('#img')[0].files[0];
+        var formData = new FormData();
+        formData.append('data', file);
 
+        $.ajax({
+            type: 'POST',
+            url: '/api/v1/upload',
+            data: formData,
+            processData: false,
+            contentType: false
+        }).done(function (data) {
+            $('#result-image').attr("src", data);
+        }).fail(function (error) {
+            alert(error);
+        });
+    },
+    deleteImage : function () {
+        var fileName = $('#result-image').val();
+        var Params = "?fileName=";
+        Params += fileName;
+
+        $.ajax({
+            type: 'DELETE',
+            url: '/api/v1/deleteFile'+Params,
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8"
+        }).done(function () {
+            alert("파일이 삭제되었습니다. ");
+        }).fail(function (error) {
+            alert(JSON.stringify(error));
+        });
     }
 
 };

@@ -5,7 +5,6 @@
 
 application-oauth.properties
 application-credentials.properties
-aws.properties
 
 
 build

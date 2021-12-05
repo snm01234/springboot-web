@@ -28,6 +28,14 @@
 
 -changelog
 
+2021-12-05 작업
+
+로컬 환경에서 S3에 파일 업로드 기능 구현하고 동작 확인
+
+삭제 api는 fileName으로 받는 걸로 구현했지만 아직 DB에 fileName 저장하는 걸 미구현
+
+서버 환경에서는 ec2에 application-aws, credentials 파일 추가하고 deploy코드에도 추가해서 추후 동작확인해보자 
+
 2021-12-04 작업
 
 코드 적용이 잘 안되서 롤백
