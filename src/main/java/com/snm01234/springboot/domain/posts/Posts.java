@@ -24,6 +24,7 @@ public class Posts extends BaseTimeEntity {
 
     private String author;
 
+    @Column(nullable = false)
     private String fileName;
 
     @Builder

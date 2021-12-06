@@ -38,6 +38,7 @@
 
 게시글 읽기 페이지 추가 및 검색창 placeholder, 게시판 footer 작성 등 기타 페이지 레이아웃 변경
 
+테스트 코드에도 오류 수정, RDS의 DB 테이블 변경
 
 2021-12-05 작업
 
@@ -49,7 +50,7 @@ db에 fileName 받아서 url 저장하는 것까지 구현
 
 수정 페이지에서 파일 업로드, 삭제 기능 보완 필요, fileName=null이면 오류발생
 
-서버 환경에서는 ec2에 application-aws, credentials 파일 추가하고 deploy코드에도 추가해서 추후 동작확인해보자 
+서버 환경에서는 ec2에 application-aws, credentials 파일 추가하고 deploy코드에도 추가해서 추후 동작확인해보자
 
 2021-12-04 작업
 
