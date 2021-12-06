@@ -3,6 +3,7 @@ package com.snm01234.springboot.web;
 import com.snm01234.springboot.config.auth.LoginUser;
 import com.snm01234.springboot.config.auth.dto.SessionUser;
 import com.snm01234.springboot.domain.posts.Posts;
+import com.snm01234.springboot.external.UploadService;
 import com.snm01234.springboot.service.PostsService;
 import com.snm01234.springboot.web.dto.FileDto;
 import com.snm01234.springboot.web.dto.PostsResponseDto;
@@ -33,10 +34,12 @@ public class IndexController {
 
     private final PostsService postsService;
     private final HttpSession httpSession;
+    private final UploadService s3Service;
+
 
     @GetMapping("/")
     public String index(Model model, @LoginUser SessionUser user,
-                        @PageableDefault(size=2, sort = "id", direction = Sort.Direction.DESC)
+                        @PageableDefault(size=5, sort = "id", direction = Sort.Direction.DESC)
                                 Pageable pageable, @RequestParam(required = false, defaultValue = "") String searchText) {
         //model.addAttribute("posts", postsService.findAllDesc());
         //model.addAttribute("posts", postsService.getPostsList(pageable));
@@ -64,7 +67,21 @@ public class IndexController {
         if(user != null) {
             model.addAttribute("loginName", user.getName());
         }
+
+
         return "posts-save";
+    }
+    @GetMapping("/posts/read/{id}")
+    public String postsRead(@PathVariable Long id, Model model, @LoginUser SessionUser user) {
+        PostsResponseDto dto = postsService.findById(id);
+        model.addAttribute("post", dto);
+        if(user != null) {
+            model.addAttribute("loginName", user.getName());
+        }
+        if(dto.getFileName() != null) {
+            model.addAttribute("fileUrl", s3Service.getFileUrl(dto.getFileName()));
+        }
+        return "posts-read";
     }
 
     @GetMapping("/posts/update/{id}")
@@ -74,41 +91,9 @@ public class IndexController {
         if(user != null) {
             model.addAttribute("loginName", user.getName());
         }
+        if(dto.getFileName() != null) {
+            model.addAttribute("fileUrl", s3Service.getFileUrl(dto.getFileName()));
+        }
         return "posts-update";
     }
-
-    @PostMapping("/upload")
-    public String upload(@RequestParam MultipartFile[] uploadfile, Model model)
-            throws IllegalStateException, IOException {
-        List<FileDto> list = new ArrayList<>();
-        for(MultipartFile file: uploadfile) {
-            if(!file.isEmpty()) {
-                String savePath = System.getProperty("user.dir") + "\\files";
-                /* 파일이 저장되는 폴더가 없으면 폴더를 생성합니다. */
-                if (!new File(savePath).exists()) {
-                    try{
-                        new File(savePath).mkdir();
-                    }
-                    catch(Exception e){
-                        e.getStackTrace();
-                    }
-                }
-
-                // UUID를 이용해 unique한 파일 이름 만들어줌
-                FileDto dto = new FileDto(UUID.randomUUID().toString(),
-                        file.getOriginalFilename(),
-                        file.getContentType());
-                list.add(dto);
-
-                File newFileName = new File(dto.getUuid() + "_" + dto.getFileName());
-                //전달된 내용을 실제 물리적인 파일로 저장해준다.
-                String filePath = savePath + "\\" + newFileName;
-                file.transferTo(Paths.get(filePath));
-            }
-        }
-        model.addAttribute("files", list);
-        return "redirect:";
-    }
-
-
 }

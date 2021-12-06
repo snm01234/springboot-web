@@ -27,7 +27,8 @@ public class FileUploadService {
         } catch (IOException e) {
             throw new IllegalArgumentException(String.format("파일 변환 중 에러가 발생하였습니다 (%s)", file.getOriginalFilename()));
         }
-        return s3Service.getFileUrl(fileName);
+        return fileName;
+        //return s3Service.getFileUrl(fileName);
     }
 
     public void deleteImage(String fileName) {

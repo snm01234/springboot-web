@@ -1,6 +1,6 @@
 {{>layout/header}}
 
-<h1> 게시글 수정</h1>
+<h1> 게시글 조회</h1>
 
 <div class="col-md-12">
     <div class="col-md-4">
@@ -15,7 +15,7 @@
             </div>
             <div class="form-group">
                 <label for="title"> 제목 </label>
-                <input type="text" class="form-control" id="title" value="{{post.title}}" >
+                <input type="text" class="form-control" id="title" value="{{post.title}}" readonly>
             </div>
             <div class="form-group">
                 <label for="author"> 작성자 </label>
@@ -23,16 +23,11 @@
             </div>
             <div class="form-group">
                 <label for="content"> 내용 </label>
-                <textarea class="form-control" id="content">{{post.content}}</textarea>
+                <textarea class="form-control" id="content" readonly>{{post.content}}</textarea>
             </div>
             <div class="form-group">
                 <label for="file-name">첨부파일</label>
                 <input type="text" class="form-control" id="file-name" value="{{post.fileName}}" disabled>
-            </div>
-            <div class="form-group">
-                <label for="img">※첨부파일은 최대 10mb까지 등록가능합니다</label>
-                <br />
-                <input type="file" id="img">
             </div>
             <div>
                 <p><strong>첨부파일 이미지입니다.</strong></p>
@@ -40,11 +35,27 @@
             </div>
         </form>
         <a href="/" role="button" class="btn btn-secondary">취소</a>
-        <button type="button" class="btn btn-primary" id="btn-uploadUpdate">수정 완료</button>
-        <button type="button" class="btn btn-warning" id="btn-deleteFile">첨부파일 삭제</button>
-        <!--        <button type="button" class="btn btn-primary" id="btn-update">수정 완료</button>-->
-        <button type="button" class="btn btn-danger" id="btn-delete">게시물 삭제</button>
+        <a href="/posts/update/{{post.id}}" role="button" class="btn btn-primary">글 수정</a>
+
     </div>
 </div>
+<!-- 라이브리 시티 설치 코드 -->
+<div id="lv-container" style="width: 35%" data-id="city" data-uid="MTAyMC81NDgwMC8zMTI3MA==">
+    <script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+	</script>
+    <noscript> 라이브리 댓글 작성을 위해 JavaScript를 활성화 해주세요</noscript>
+</div>
+<!-- 시티 설치 코드 끝 -->
 
 {{>layout/footer}}

@@ -18,7 +18,8 @@
         <form class="form-inline d-flex justify-content-end">
             <div class="form-group mx-sm-3 mb-2">
                 <label for="searchText" class="sr-only">검색</label>
-                <input type="text" class="form-control" id="searchText" name="searchText" value={{searchText}}>
+                <input type="text" class="form-control" id="searchText" name="searchText"
+                       placeholder="제목 또는 내용으로 검색" value={{searchText}}>
             </div>
             <button type="submit" class="btn btn-primary mb-2">검색</button>
         </form>
@@ -37,7 +38,7 @@
             {{#posts}} <!-- posts라는 List 순회함. == java for문 -->
                 <tr>
                     <td>{{id}}</td> <!-- Lists 객체의 필드 -->
-                    <td><a href="/posts/update/{{id}}">{{title}}</a></td>
+                    <td><a href="/posts/read/{{id}}">{{title}}</a></td>
                     <td>{{author}}</td>
                     <td>{{modifiedDate}}</td>
                 </tr>
@@ -63,5 +64,9 @@
                 {{/check}}
             </ul>
         </nav>
+    </div>
+    <hr>
+    <div class="footer-info" align="center">
+        developer email: park96618@gmail.com
     </div>
 {{>layout/footer}}
