@@ -41,6 +41,7 @@
 
 nginx file upload limit를 1MB에서 10MB로 수정
 
+posts 관련 테스트코드 수정
 
 2021-12-06 작업
 
