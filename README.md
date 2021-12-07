@@ -17,7 +17,7 @@
 + JUnit5
 + JPA
 + Lombok
-+ Spring Security, OAuth2
++ Spring Security
 + Mustache 
 + Gradle (7.1)
 + IntelliJ Community 
@@ -32,9 +32,9 @@
 ## 구현된 기능 <a id="ch3"></a>
 
 + 페이징 처리, 검색 기능
-+ 구글,네이버,카카오 소셜 로그인
-+ 게시글 등록 시 파일 첨부 기능
-+ 이미지 파일 첨부 시 첨부 이미지 표시
++ 구글,네이버,카카오 소셜 로그인(OAuth2)
++ 게시글 등록 시 파일 첨부 기능(S3 bucket에 업로드)
++ 이미지 파일이 첨부 되어있을 시 첨부 이미지 표시
 + 라이브리 소셜 댓글 서비스 사용
 
 
