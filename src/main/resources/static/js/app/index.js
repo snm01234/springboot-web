@@ -193,7 +193,7 @@ var main = {
             $('#result-image').attr("src", "");
             _this.update();
         }).fail(function (error) {
-            //alert("삭제할 파일이 없습니다.")
+            alert("삭제할 파일이 없습니다.")
             //alert(JSON.stringify(error));
         });
         } else {

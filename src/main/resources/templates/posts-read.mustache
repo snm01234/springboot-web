@@ -5,10 +5,12 @@
 <div class="col-md-12">
     <div class="col-md-4">
         <form>
+            {{#loginName}}
             <div class="form-group">
                 <label for="loginName" hidden> 로그인된 사용자명 </label>
                 <input type="text" class="form-control" id="loginName" value="{{loginName}}" hidden>
             </div>
+            {{/loginName}}
             <div class="form-group">
                 <label for="id"> 글 번호 </label>
                 <input type="text" class="form-control" id="id" value="{{post.id}}" readonly>
