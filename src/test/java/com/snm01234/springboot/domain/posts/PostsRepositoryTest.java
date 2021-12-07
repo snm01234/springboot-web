@@ -29,11 +29,13 @@ public class PostsRepositoryTest {
         //given
         String title = "테스트 게시글";
         String content = "테스트 본문";
+        String fileName = "";
 
         postsRepository.save(Posts.builder()
                 .title(title)
                 .content(content)
                 .author("park96618@gmail.com")
+                .fileName(fileName)
                 .build());
 
         //when
@@ -43,6 +45,7 @@ public class PostsRepositoryTest {
         Posts posts = postsList.get(0);
         assertThat(posts.getTitle()).isEqualTo(title);
         assertThat(posts.getContent()).isEqualTo(content);
+        assertThat(posts.getFileName()).isEqualTo(fileName);
     }
 
     @Test
@@ -54,6 +57,7 @@ public class PostsRepositoryTest {
                 .title("title")
                 .content("content")
                 .author("author")
+                .fileName("")
                 .build());
 
         //when

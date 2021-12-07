@@ -67,10 +67,12 @@ public class PostsApiControllerTest {
         //given
         String title = "title";
         String content = "content";
+        String fileName = "";
         PostsSaveRequestDto requestDto = PostsSaveRequestDto.builder()
                 .title(title)
                 .content(content)
                 .author("author")
+                .fileName(fileName)
                 .build();
 
         String url = "http://localhost:" + port + "/api/v1/posts";
@@ -85,6 +87,7 @@ public class PostsApiControllerTest {
         List<Posts> all = postsRepository.findAll();
         assertThat(all.get(0).getTitle()).isEqualTo(title);
         assertThat(all.get(0).getContent()).isEqualTo(content);
+        assertThat(all.get(0).getFileName()).isEqualTo(fileName);
     }
 
     @Test
@@ -95,15 +98,18 @@ public class PostsApiControllerTest {
                 .title("title")
                 .content("content")
                 .author("author")
+                .fileName("fileName")
                 .build());
 
         Long updateId = savedPosts.getId();
         String expectedTitle = "title2";
         String expectedContent = "content2";
+        String expectedFileName = "";
 
         PostsUpdateRequestDto requestDto = PostsUpdateRequestDto.builder()
                 .title(expectedTitle)
                 .content(expectedContent)
+                .fileName(expectedFileName)
                 .build();
 
         String url = "http://localhost:" + port + "/api/v1/posts/" + updateId;
@@ -120,6 +126,7 @@ public class PostsApiControllerTest {
         List<Posts> all = postsRepository.findAll();
         assertThat(all.get(0).getTitle()).isEqualTo(expectedTitle);
         assertThat(all.get(0).getContent()).isEqualTo(expectedContent);
+        assertThat(all.get(0).getFileName()).isEqualTo(expectedFileName);
     }
 
 
