@@ -58,16 +58,16 @@ public class PostsService {
     }
 
     @Transactional
-    public Boolean getListCheck(Pageable pageable) {
-        Page<Posts> saved = getPostsList(pageable);
+    public Boolean getListCheck(String title, String content, Pageable pageable) {
+        Page<Posts> saved = postsRepository.findByTitleContainingOrContentContaining(title, content, pageable);//getPostsList(pageable);
         Boolean check = saved.hasNext(); // next가 있으면 true
 
         return check;
     }
 
     @Transactional
-    public Boolean getListCheck2(Pageable pageable) {
-        Page<Posts> saved = getPostsList(pageable);
+    public Boolean getListCheck2(String title, String content, Pageable pageable) {
+        Page<Posts> saved = postsRepository.findByTitleContainingOrContentContaining(title, content, pageable);//getPostsList(pageable);
         Boolean check2 = saved.isFirst(); // 첫번째 페이지면 true
         return check2;
     }

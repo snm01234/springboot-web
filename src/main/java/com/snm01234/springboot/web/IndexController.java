@@ -5,7 +5,6 @@ import com.snm01234.springboot.config.auth.dto.SessionUser;
 import com.snm01234.springboot.domain.posts.Posts;
 import com.snm01234.springboot.external.UploadService;
 import com.snm01234.springboot.service.PostsService;
-import com.snm01234.springboot.web.dto.FileDto;
 import com.snm01234.springboot.web.dto.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -16,17 +15,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
 
 @RequiredArgsConstructor
 @Controller
@@ -39,19 +31,19 @@ public class IndexController {
 
     @GetMapping("/")
     public String index(Model model, @LoginUser SessionUser user,
-                        @PageableDefault(size=5, sort = "id", direction = Sort.Direction.DESC)
+                        @PageableDefault(size=1, sort = "id", direction = Sort.Direction.DESC)
                                 Pageable pageable, @RequestParam(required = false, defaultValue = "") String searchText) {
         //model.addAttribute("posts", postsService.findAllDesc());
         //model.addAttribute("posts", postsService.getPostsList(pageable));
         Page<Posts> posts = postsService.search(searchText, searchText, pageable);
         model.addAttribute("searchText", searchText);
         model.addAttribute("posts", posts);
-        model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());
-        model.addAttribute("next", pageable.next().getPageNumber());
-        model.addAttribute("check", postsService.getListCheck(pageable)); // 마지막 페이지인지 체크용
-        model.addAttribute("check2", postsService.getListCheck2(pageable)); // 첫번쨰 페이지인지 체크용
+        model.addAttribute("previous", pageable.previousOrFirst().getPageNumber() + 1);
+        model.addAttribute("next", pageable.next().getPageNumber() + 1);
+        model.addAttribute("check", postsService.getListCheck(searchText, searchText, pageable)); // 마지막 페이지인지 체크용
+        model.addAttribute("check2", postsService.getListCheck2(searchText, searchText, pageable)); // 첫번쨰 페이지인지 체크용
         ArrayList pageIndex = new ArrayList();
-        for(int i=0; i < posts.getTotalPages(); i++) {
+        for(int i = 1; i < posts.getTotalPages() + 1; i++) {
             pageIndex.add(i);
         }
         model.addAttribute("pageIndex", pageIndex);
