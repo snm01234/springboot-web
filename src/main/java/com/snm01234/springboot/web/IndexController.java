@@ -31,7 +31,7 @@ public class IndexController {
 
     @GetMapping("/")
     public String index(Model model, @LoginUser SessionUser user,
-                        @PageableDefault(size=1, sort = "id", direction = Sort.Direction.DESC)
+                        @PageableDefault(size=5, sort = "id", direction = Sort.Direction.DESC)
                                 Pageable pageable, @RequestParam(required = false, defaultValue = "") String searchText) {
         //model.addAttribute("posts", postsService.findAllDesc());
         //model.addAttribute("posts", postsService.getPostsList(pageable));
