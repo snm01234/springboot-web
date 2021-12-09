@@ -1,5 +1,6 @@
 package com.snm01234.springboot.web;
 
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +14,8 @@ import java.util.List;
 public class ProfileController {
     private final Environment env;
 
-    @GetMapping("/profile") // 배포 시 8081, 8082포트 쓸 지 판단하는 기준
+    @ApiOperation(value = "profile 확인", notes = "배포 시 8081, 8082포트 쓸 지 판단하는 기준")
+    @GetMapping("/profile")
     public String profile() {
         List<String> profiles = Arrays.asList(env.getActiveProfiles());
 
