@@ -1,9 +1,8 @@
 {{>layout/header}}
 
-<h1> 게시글 수정</h1>
-
-<div class="col-md-12">
-    <div class="col-md-4">
+<div class="col-md-12 d-flex justify-content-center">
+    <div class="col-md-6 mt-3">
+        <h2> 게시글 수정 </h2>
         <form>
             <div class="form-group">
                 <label for="loginName" hidden> 로그인된 사용자명 </label>
@@ -23,7 +22,7 @@
             </div>
             <div class="form-group">
                 <label for="content"> 내용 </label>
-                <textarea class="form-control" id="content">{{post.content}}</textarea>
+                <textarea class="form-control" rows="7" id="content">{{post.content}}</textarea>
             </div>
             <div class="form-group">
                 <label for="file-name">첨부파일</label>
@@ -39,11 +38,13 @@
                 <img src={{fileUrl}} onerror="this.parentNode.style.display='none'" id="result-image">
             </div>
         </form>
-        <a href="/" role="button" class="btn btn-secondary">취소</a>
-        <button type="button" class="btn btn-primary" id="btn-uploadUpdate">수정 완료</button>
-        <button type="button" class="btn btn-warning" id="btn-deleteFile">첨부파일 삭제</button>
+        <div class="d-flex justify-content-end">
+        <a href="/" role="button" class="btn btn-secondary mr-2">취소</a>
+        <button type="button" class="btn btn-primary mr-2" id="btn-uploadUpdate">수정 완료</button>
+        <button type="button" class="btn btn-warning mr-2" id="btn-deleteFile">첨부파일 삭제</button>
         <!--        <button type="button" class="btn btn-primary" id="btn-update">수정 완료</button>-->
         <button type="button" class="btn btn-danger" id="btn-delete">게시물 삭제</button>
+        </div>
     </div>
 </div>
 
