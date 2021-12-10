@@ -79,10 +79,9 @@ public class IndexController {
     @GetMapping("/posts/update/{id}")
     public String postsUpdate(@PathVariable Long id, Model model, @LoginUser SessionUser user) {
         PostsResponseDto dto = postsService.findById(id);
+        model.addAttribute("userRole", user.getRole());
         model.addAttribute("post", dto);
-        if(user != null) {
-            model.addAttribute("loginName", user.getName());
-        }
+        model.addAttribute("loginName", user.getName());
         if(dto.getFileName() != null) {
             model.addAttribute("fileUrl", s3Service.getFileUrl(dto.getFileName()));
         }

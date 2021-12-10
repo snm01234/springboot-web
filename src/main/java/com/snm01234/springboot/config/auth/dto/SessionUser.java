@@ -1,5 +1,6 @@
 package com.snm01234.springboot.config.auth.dto;
 
+import com.snm01234.springboot.domain.user.Role;
 import com.snm01234.springboot.domain.user.User;
 import lombok.Getter;
 
@@ -11,10 +12,12 @@ public class SessionUser implements Serializable {
     private String name;
     private String email;
     private String picture;
+    private Role role;
 
     public SessionUser(User user) {
         this.name = user.getName();
         this.email = user.getEmail();
         this.picture = user.getPicture();
+        this.role = user.getRole();
     }
 }

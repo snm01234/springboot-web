@@ -21,7 +21,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .authorizeRequests()
                     .antMatchers("/", "/css/**", "/images/**", "/js/**", "/h2-console/**", "/profile", "/posts/read/**",
                             "/v2/api-docs", "/configuration/ui", "/swagger-resources/**", "/configuration/security", "/webjars/**", "/swagger-ui.html" ).permitAll()
-                    .antMatchers("/api/v1/**").hasRole(Role.USER.name())
+                    .antMatchers("/api/v1/**").hasAnyRole(Role.USER.name(), Role.ADMIN.name())
                     .anyRequest().authenticated()   //나머지 url 인증되어야한다.
                 .and()
                     .logout()

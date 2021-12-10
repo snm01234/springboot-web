@@ -55,8 +55,10 @@ var main = {
         var author = $('#author').val();
         var username = $('#loginName').val();
         var id = $('#id').val();
+        var userRole = $('#userRole').val();
 
-        if(username == author) {
+
+        if(username == author || userRole == "ADMIN") {
             $.ajax({
                 type: 'PUT',
                 url: '/api/v1/posts/'+id,
@@ -78,8 +80,9 @@ var main = {
         var id = $('#id').val();
         var author = $('#author').val();
         var username = $('#loginName').val();
+        var userRole = $('#userRole').val();
         var _this = this;
-        if(username == author) {
+        if(username == author || userRole == "ADMIN") {
             $.ajax({
                 type: 'DELETE',
                 url: '/api/v1/posts/'+id,
@@ -124,9 +127,10 @@ var main = {
         formData.append('data', file);
         var author = $('#author').val();
         var username = $('#loginName').val();
+        var userRole = $('#userRole').val();
         var _this = this;
 
-        if(username == author) {
+        if(username == author || userRole == "ADMIN") {
         _this.deleteImage();
         $.ajax({
             type: 'POST',
@@ -152,8 +156,9 @@ var main = {
         var username = $('#loginName').val();
         var fileName = $('#file-name').val();
         var Params = "?fileName=";
+        var userRole = $('#userRole').val();
         Params += fileName;
-        if(username == author) {
+        if(username == author || userRole == "ADMIN") {
             if(fileName != "") {
             $.ajax({
                 type: 'DELETE',
@@ -179,9 +184,10 @@ var main = {
         var username = $('#loginName').val();
         var fileName = $('#file-name').val();
         var Params = "?fileName=";
+        var userRole = $('#userRole').val();
         Params += fileName;
         var _this = this;
-        if(username == author) {
+        if(username == author || userRole == "ADMIN") {
         $.ajax({
             type: 'DELETE',
             url: '/api/v1/deleteFile'+Params,
@@ -200,7 +206,6 @@ var main = {
             alert('삭제 권한이 없습니다.');
         }
     }
-
 
 };
 
