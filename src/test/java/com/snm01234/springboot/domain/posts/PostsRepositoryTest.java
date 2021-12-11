@@ -27,11 +27,13 @@ public class PostsRepositoryTest {
     @Test
     public void 게시글저장_불러오기() {
         //given
+        Long id = 1L;
         String title = "테스트 게시글";
         String content = "테스트 본문";
         String fileName = "";
 
         postsRepository.save(Posts.builder()
+                .id(id)
                 .title(title)
                 .content(content)
                 .author("park96618@gmail.com")
@@ -52,8 +54,8 @@ public class PostsRepositoryTest {
     public void BaseTimeEntity_등록() {
         //given
         LocalDateTime now = LocalDateTime.of(2021,11,22,0,0,0);
-
         postsRepository.save(Posts.builder()
+                .id(1L)
                 .title("title")
                 .content("content")
                 .author("author")

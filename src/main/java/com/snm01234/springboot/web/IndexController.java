@@ -3,8 +3,10 @@ package com.snm01234.springboot.web;
 import com.snm01234.springboot.config.auth.LoginUser;
 import com.snm01234.springboot.config.auth.dto.SessionUser;
 import com.snm01234.springboot.domain.posts.Posts;
+import com.snm01234.springboot.domain.posts.Reply;
 import com.snm01234.springboot.external.UploadService;
 import com.snm01234.springboot.service.PostsService;
+import com.snm01234.springboot.service.ReplyService;
 import com.snm01234.springboot.web.dto.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -27,6 +29,7 @@ public class IndexController {
     private final PostsService postsService;
     private final HttpSession httpSession;
     private final UploadService s3Service;
+    private final ReplyService replyService;
 
 
     @GetMapping("/")
@@ -73,6 +76,7 @@ public class IndexController {
         if(dto.getFileName() != null) {
             model.addAttribute("fileUrl", s3Service.getFileUrl(dto.getFileName()));
         }
+        model.addAttribute("reply", replyService.getList(id));
         return "posts-read";
     }
 

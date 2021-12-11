@@ -43,6 +43,40 @@
         </div>
     </div>
 </div>
+
+<!--<div>-->
+<!--    <label for="title"> 댓글번호 </label>-->
+<!--    <input type="text" class="form-control" id="replyNo" value="{{!reply.rno}}" readonly>-->
+<!--</div>-->
+<!--<div>-->
+<!--    <label for="title"> 댓글내용 </label>-->
+<!--    <input type="text" class="form-control" id="replyText" value="{{!reply.text}}" readonly>-->
+<!--</div>-->
+<!--<div>-->
+<!--    <label for="title"> 작성자 </label>-->
+<!--    <input type="text" class="form-control" id="replier" value="{{!reply.replier}}" readonly>-->
+<!--</div>-->
+<table class="table table-horizontal table-bordered">
+    <thead class="thead-strong">
+    <tr>
+        <th>댓글번호</th>
+        <th>댓글내용</th>
+        <th>작성자</th>
+        <th>최종수정일</th>
+    </tr>
+    </thead>
+    <tbody id="tbody">
+    {{#reply}} <!-- posts라는 List 순회함. == java for문 -->
+    <tr>
+        <td>{{rno}}</td> <!-- Lists 객체의 필드 -->
+        <td>{{text}}</a></td>
+        <td>{{replier}}</td>
+        <td>{{modifiedDate}}</td>
+    </tr>
+    {{/reply}}
+    </tbody>
+</table>
+
 <!-- 라이브리 시티 설치 코드 -->
 <div id="lv-container" class="d-flex justify-content-center" style="width: 50%" data-id="city" data-uid="MTAyMC81NDgwMC8zMTI3MA==">
     <script type="text/javascript">

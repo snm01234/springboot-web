@@ -1,11 +1,13 @@
 package com.snm01234.springboot.domain.posts;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.snm01234.springboot.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor
@@ -27,8 +29,12 @@ public class Posts extends BaseTimeEntity {
     @Column(nullable = false)
     private String fileName;
 
+    @OneToMany(mappedBy = "posts", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Reply> reply;
+
     @Builder
-    public Posts(String title, String content, String author, String fileName) {
+    public Posts(Long id, String title, String content, String author, String fileName) {
+        this.id = id;
         this.title = title;
         this.content = content;
         this.author = author;
