@@ -39,6 +39,7 @@ public class IndexController {
         //model.addAttribute("posts", postsService.findAllDesc());
         //model.addAttribute("posts", postsService.getPostsList(pageable));
         Page<Posts> posts = postsService.search(searchText, searchText, pageable);
+
         model.addAttribute("searchText", searchText);
         model.addAttribute("posts", posts);
         model.addAttribute("previous", pageable.previousOrFirst().getPageNumber() + 1);
@@ -72,11 +73,13 @@ public class IndexController {
         model.addAttribute("post", dto);
         if(user != null) {
             model.addAttribute("loginName", user.getName());
+            model.addAttribute("userRole", user.getRole());
         }
         if(dto.getFileName() != null) {
             model.addAttribute("fileUrl", s3Service.getFileUrl(dto.getFileName()));
         }
         model.addAttribute("reply", replyService.getList(id));
+        model.addAttribute("replySize", replyService.getList(id).size());
         return "posts-read";
     }
 
