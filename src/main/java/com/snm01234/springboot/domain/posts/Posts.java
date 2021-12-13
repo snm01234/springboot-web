@@ -34,7 +34,7 @@ public class Posts extends BaseTimeEntity {
     private List<Reply> reply;
 
     //댓글개수
-    @Formula("(SELECT count(1) FROM Reply r WHERE r.posts_id = id)")
+    @Formula("(SELECT count(1) FROM reply r WHERE r.posts_id = id)")
     private Integer replyCount;
 
     @Builder
