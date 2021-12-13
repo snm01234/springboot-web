@@ -12,6 +12,8 @@ public class PostsSaveRequestDto {
     private String content;
     private String author;
     private String fileName;
+    private Integer replyCount;
+
     @Builder
     public PostsSaveRequestDto(String title, String content, String author, String fileName) {
         this.title = title;
@@ -26,6 +28,7 @@ public class PostsSaveRequestDto {
                 .content(content)
                 .author(author)
                 .fileName(fileName)
+                .replyCount(replyCount)
                 .build();
     }
 }

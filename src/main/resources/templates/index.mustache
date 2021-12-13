@@ -31,6 +31,7 @@
                 <th>제목</th>
                 <th>작성자</th>
                 <th>최종수정일</th>
+                <th>댓글수</th>
             </tr>
             </thead>
             <tbody id="tbody">
@@ -40,6 +41,7 @@
                     <td><a href="/posts/read/{{id}}">{{title}}</a></td>
                     <td>{{author}}</td>
                     <td>{{modifiedDate}}</td>
+                    <td>{{replyCount}}</td>
                 </tr>
             {{/posts}}
             </tbody>

@@ -5,6 +5,7 @@ import com.snm01234.springboot.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
 import java.util.List;
@@ -32,13 +33,18 @@ public class Posts extends BaseTimeEntity {
     @OneToMany(mappedBy = "posts", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Reply> reply;
 
+    //댓글개수
+    @Formula("(SELECT count(1) FROM Reply r WHERE r.posts_id = id)")
+    private Integer replyCount;
+
     @Builder
-    public Posts(Long id, String title, String content, String author, String fileName) {
+    public Posts(Long id, String title, String content, String author, String fileName, Integer replyCount) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.author = author;
         this.fileName = fileName;
+        this.replyCount = replyCount;
     }
 
     public void update(String title, String content, String fileName) {
