@@ -1,7 +1,7 @@
 {{>layout/header}}
 
 
-<div class="col-md-12 d-flex justify-content-center">
+<div class="col-md-12 d-flex justify-content-center" xmlns="http://www.w3.org/1999/html">
     <div class="col-md-6 mt-3">
         <h2> 게시글 조회 </h2>
         <form>
@@ -51,57 +51,40 @@
         <div>
             <label>총 댓글 수 : {{replySize}}개</label>
         </div>
-        <table class="table table-horizontal table-bordered mt-2">
-            <thead class="thead-strong">
-            <tr>
-                <th>댓글번호</th>
-                <th>작성자</th>
-                <th>댓글내용</th>
-                <th>최종수정일</th>
-                <th>댓글삭제</th>
-            </tr>
-            </thead>
-            <tbody id="tbody">
-            {{#reply}}
-                <tr>
-                    <td>{{rno}}</td>
-                    <td>{{replier}}</td>
-                    <td>{{text}}</a></td>
-                    <td>{{modifiedDate}}</td>
-                    <td>
-                        <button type="button" class="reply-delete btn btn-danger" value="{{rno}}" replier="{{replier}}">댓글삭제</button>
-                    </td>
-                </tr>
-            {{/reply}}
-            </tbody>
-        </table>
+
+        {{#reply}}
+        <div class="card mb-15">
+            <div class="card-body">
+                <label>{{replier}}</label>
+                    <div rows="2"> {{text}} </div>
+                <a type="button" class="reply-delete text-danger float-right mr-2" value="{{rno}}" replier="{{replier}}">삭제</a>
+                <div class="float-right mr-2" > {{modifiedDate}}</div>
+            </div>
+        </div>
+        {{/reply}}
 
         {{>reply-form}}
 
     </div>
 </div>
 
-
-
-
-
 <!-- 라이브리 시티 설치 코드 -->
-<div id="lv-container" class="d-flex justify-content-center" style="width: 50%" data-id="city" data-uid="MTAyMC81NDgwMC8zMTI3MA==">
-    <script type="text/javascript">
-   (function(d, s) {
-       var j, e = d.getElementsByTagName(s)[0];
+<!--<div id="lv-container" class="d-flex justify-content-center" style="width: 50%" data-id="city" data-uid="MTAyMC81NDgwMC8zMTI3MA==">-->
+<!--    <script type="text/javascript">-->
+<!--   (function(d, s) {-->
+<!--       var j, e = d.getElementsByTagName(s)[0];-->
 
-       if (typeof LivereTower === 'function') { return; }
+<!--       if (typeof LivereTower === 'function') { return; }-->
 
-       j = d.createElement(s);
-       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-       j.async = true;
+<!--       j = d.createElement(s);-->
+<!--       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';-->
+<!--       j.async = true;-->
 
-       e.parentNode.insertBefore(j, e);
-   })(document, 'script');
-	</script>
-    <noscript> 라이브리 댓글 작성을 위해 JavaScript를 활성화 해주세요</noscript>
-</div>
+<!--       e.parentNode.insertBefore(j, e);-->
+<!--   })(document, 'script');-->
+<!--	</script>-->
+<!--    <noscript> 라이브리 댓글 작성을 위해 JavaScript를 활성화 해주세요</noscript>-->
+<!--</div>-->
 <!-- 시티 설치 코드 끝 -->
 
 {{>layout/footer}}
