@@ -3,11 +3,11 @@ package com.snm01234.springboot.web;
 import com.snm01234.springboot.config.auth.LoginUser;
 import com.snm01234.springboot.config.auth.dto.SessionUser;
 import com.snm01234.springboot.domain.posts.Posts;
-import com.snm01234.springboot.domain.posts.Reply;
 import com.snm01234.springboot.external.UploadService;
 import com.snm01234.springboot.service.PostsService;
 import com.snm01234.springboot.service.ReplyService;
 import com.snm01234.springboot.web.dto.PostsResponseDto;
+import com.snm01234.springboot.web.dto.ReplyDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
@@ -39,13 +40,18 @@ public class IndexController {
         //model.addAttribute("posts", postsService.findAllDesc());
         //model.addAttribute("posts", postsService.getPostsList(pageable));
         Page<Posts> posts = postsService.search(searchText, searchText, pageable);
+        boolean check = posts.hasNext();
+        boolean check2 = posts.isFirst();
 
         model.addAttribute("searchText", searchText);
         model.addAttribute("posts", posts);
         model.addAttribute("previous", pageable.previousOrFirst().getPageNumber() + 1);
         model.addAttribute("next", pageable.next().getPageNumber() + 1);
-        model.addAttribute("check", postsService.getListCheck(searchText, searchText, pageable)); // 마지막 페이지인지 체크용
-        model.addAttribute("check2", postsService.getListCheck2(searchText, searchText, pageable)); // 첫번쨰 페이지인지 체크용
+        model.addAttribute("check", check);
+        model.addAttribute("check2", check2);
+        // page<posts> 여러번 호출하는 문제 있어서 controller에서 boolean check하는걸로 변경
+        //model.addAttribute("check", postsService.getListCheck(searchText, searchText, pageable)); // 마지막 페이지인지 체크용
+        //model.addAttribute("check2", postsService.getListCheck2(searchText, searchText, pageable)); // 첫번쨰 페이지인지 체크용
         ArrayList pageIndex = new ArrayList();
         for(int i = 1; i < posts.getTotalPages() + 1; i++) {
             pageIndex.add(i);
@@ -64,12 +70,12 @@ public class IndexController {
             model.addAttribute("loginName", user.getName());
         }
 
-
         return "posts-save";
     }
     @GetMapping("/posts/read/{id}")
     public String postsRead(@PathVariable Long id, Model model, @LoginUser SessionUser user) {
         PostsResponseDto dto = postsService.findById(id);
+        List<ReplyDto> reply = replyService.getList(id);
         model.addAttribute("post", dto);
         if(user != null) {
             model.addAttribute("loginName", user.getName());
@@ -78,8 +84,8 @@ public class IndexController {
         if(dto.getFileName() != null) {
             model.addAttribute("fileUrl", s3Service.getFileUrl(dto.getFileName()));
         }
-        model.addAttribute("reply", replyService.getList(id));
-        model.addAttribute("replySize", replyService.getList(id).size());
+        model.addAttribute("reply", reply);
+        model.addAttribute("replySize", reply.size());
         return "posts-read";
     }
 

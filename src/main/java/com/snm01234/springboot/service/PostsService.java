@@ -51,26 +51,26 @@ public class PostsService {
         return postsRepository.findAll(pageable);
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public Page<Posts> search(String title, String content, Pageable pageable) {
         Page<Posts> postsList = postsRepository.findByTitleContainingOrContentContaining(title, content, pageable);
         return postsList;
     }
 
-    @Transactional
-    public Boolean getListCheck(String title, String content, Pageable pageable) {
-        Page<Posts> saved = postsRepository.findByTitleContainingOrContentContaining(title, content, pageable);//getPostsList(pageable);
-        Boolean check = saved.hasNext(); // next가 있으면 true
-
-        return check;
-    }
-
-    @Transactional
-    public Boolean getListCheck2(String title, String content, Pageable pageable) {
-        Page<Posts> saved = postsRepository.findByTitleContainingOrContentContaining(title, content, pageable);//getPostsList(pageable);
-        Boolean check2 = saved.isFirst(); // 첫번째 페이지면 true
-        return check2;
-    }
+//    @Transactional
+//    public Boolean getListCheck(String title, String content, Pageable pageable) {
+//        Page<Posts> saved = postsRepository.findByTitleContainingOrContentContaining(title, content, pageable);//getPostsList(pageable);
+//        Boolean check = saved.hasNext(); // next가 있으면 true
+//
+//        return check;
+//    }
+//
+//    @Transactional
+//    public Boolean getListCheck2(String title, String content, Pageable pageable) {
+//        Page<Posts> saved = postsRepository.findByTitleContainingOrContentContaining(title, content, pageable);//getPostsList(pageable);
+//        Boolean check2 = saved.isFirst(); // 첫번째 페이지면 true
+//        return check2;
+//    }
 
     public PostsResponseDto findById(Long id) {
         Posts entity = postsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id="+ id));
