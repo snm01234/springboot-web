@@ -43,6 +43,7 @@ var main = {
             window.location.href = '/';
         }).fail(function (error) {
             //alert(JSON.stringify(error));
+            alert(JSON.stringify(error));
             markingErrorField(error);
         });
     },
