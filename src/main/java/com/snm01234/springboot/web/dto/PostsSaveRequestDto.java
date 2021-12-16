@@ -5,10 +5,14 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotBlank;
+
 @Getter
 @NoArgsConstructor
 public class PostsSaveRequestDto {
+    @NotBlank(message = "제목을 작성해주세요.")
     private String title;
+    @NotBlank(message = "내용을 작성해주세요.")
     private String content;
     private String author;
     private String fileName;

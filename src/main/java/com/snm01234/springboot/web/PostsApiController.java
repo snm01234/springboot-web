@@ -7,6 +7,8 @@ import com.snm01234.springboot.web.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RequiredArgsConstructor
 @RestController
 public class PostsApiController {
@@ -14,12 +16,12 @@ public class PostsApiController {
     private final PostsService postsService;
 
     @PostMapping("/api/v1/posts")
-    public Long save(@RequestBody PostsSaveRequestDto requestDto) {
+    public Long save(@RequestBody @Valid PostsSaveRequestDto requestDto) {
         return  postsService.save(requestDto);
     }
 
     @PutMapping("/api/v1/posts/{id}")
-    public Long update(@PathVariable Long id, @RequestBody PostsUpdateRequestDto requestDto) {
+    public Long update(@PathVariable Long id, @RequestBody @Valid PostsUpdateRequestDto requestDto) {
         return postsService.update(id, requestDto);
     }
     @DeleteMapping("/api/v1/posts/{id}")
