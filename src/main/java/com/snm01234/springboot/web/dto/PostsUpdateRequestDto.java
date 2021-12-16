@@ -11,7 +11,7 @@ import javax.validation.constraints.NotBlank;
 public class PostsUpdateRequestDto {
     @NotBlank(message = "제목을 작성해주세요.")
     private String title;
-    @NotBlank(message = "내용을 작성해주세요.")
+    //@NotBlank(message = "내용을 작성해주세요.")
     private String content;
     private String fileName;
 
