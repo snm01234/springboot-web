@@ -2,10 +2,7 @@ package com.snm01234.springboot.service;
 
 import com.snm01234.springboot.domain.posts.Posts;
 import com.snm01234.springboot.domain.posts.PostsRepository;
-import com.snm01234.springboot.web.dto.PostsListResponseDto;
-import com.snm01234.springboot.web.dto.PostsResponseDto;
-import com.snm01234.springboot.web.dto.PostsSaveRequestDto;
-import com.snm01234.springboot.web.dto.PostsUpdateRequestDto;
+import com.snm01234.springboot.web.dto.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -30,6 +27,12 @@ public class PostsService {
     public Long update(Long id, PostsUpdateRequestDto requestDto) {
         Posts posts = postsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id="+ id));
         posts.update(requestDto.getTitle(), requestDto.getContent(), requestDto.getFileName());
+        return id;
+    }
+    @Transactional
+    public Long updateFile(Long id, PostsFileUpdateRequestDto requestDto) {
+        Posts posts = postsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id="+ id));
+        posts.updateFile(requestDto.getFileName());
         return id;
     }
 

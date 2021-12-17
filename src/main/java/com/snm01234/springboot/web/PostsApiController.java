@@ -1,6 +1,7 @@
 package com.snm01234.springboot.web;
 
 import com.snm01234.springboot.service.PostsService;
+import com.snm01234.springboot.web.dto.PostsFileUpdateRequestDto;
 import com.snm01234.springboot.web.dto.PostsResponseDto;
 import com.snm01234.springboot.web.dto.PostsSaveRequestDto;
 import com.snm01234.springboot.web.dto.PostsUpdateRequestDto;
@@ -34,5 +35,9 @@ public class PostsApiController {
         return postsService.findById(id);
     }
 
+    @PutMapping("/api/v1/posts/file/{id}")
+    public Long updateFile(@PathVariable Long id, @RequestBody @Valid PostsFileUpdateRequestDto requestDto) {
+        return postsService.updateFile(id, requestDto);
+    }
 
 }

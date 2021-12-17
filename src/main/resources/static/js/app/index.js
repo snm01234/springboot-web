@@ -183,6 +183,36 @@ var main = {
         }
 
     },
+    updateFile : function () {
+
+        var data = {
+            fileName: $('#file-name').val()
+        };
+        var author = $('#author').val();
+        var username = $('#loginName').val();
+        var id = $('#id').val();
+        var userRole = $('#userRole').val();
+
+        if(username == author || userRole == "ADMIN") {
+            $.ajax({
+                type: 'PUT',
+                url: '/api/v1/posts/file/'+id,
+                dataType: 'json',
+                contentType:'application/json; charset=utf-8',
+                data: JSON.stringify(data)
+            }).done(function() {
+                alert('글이 수정되었습니다.');
+                window.location.reload();
+            }).fail(function (error) {
+                alert("오류가 발생하였습니다.");
+                //markingErrorField(error);
+                //alert(JSON.stringify(error));
+            });
+        } else {
+            alert('수정 권한이 없습니다.');
+
+        }
+    },
     deleteImageUpdate : function () {
         var author = $('#author').val();
         var username = $('#loginName').val();
@@ -194,14 +224,14 @@ var main = {
         if(username == author || userRole == "ADMIN") {
         $.ajax({
             type: 'DELETE',
-            url: '/api/v1/deleteFile'+Params,
+            url: '/api/v1/deleteFile/'+Params,
             dataType: 'text',
             contentType: "application/json; charset=utf-8"
         }).done(function () {
             //alert("파일이 삭제되었습니다. ");
             $('#file-name').attr("value", "");
             $('#result-image').attr("src", "");
-            _this.update();
+            _this.updateFile();
         }).fail(function (error) {
             alert("삭제할 파일이 없습니다.")
             //alert(JSON.stringify(error));
