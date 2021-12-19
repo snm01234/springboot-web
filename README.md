@@ -42,6 +42,14 @@
 
 ## change log <a id="ch4"></a>
 
+#### 2021-12-19 작업
+
+Method Security 기능 테스트 
+
+메소드접근제한 할 수 있지만 제약이 있어서 많은 api에 적용하기는 힘들고
+
+Web Security와 상호보완적으로 사용할 수 있음.
+
 #### 2021-12-18 작업
 
 사이트 분석 위해 google analytics 적용

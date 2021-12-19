@@ -52,11 +52,12 @@ var main = {
         var data = {
             title: $('#title').val(),
             content: $('#content').val(),
+            author: $('#author').val(),
             fileName: $('#file-name').val()
         };
-        var author = $('#author').val();
         var username = $('#loginName').val();
         var id = $('#id').val();
+        var author = $('#author').val();
         var userRole = $('#userRole').val();
 
 
