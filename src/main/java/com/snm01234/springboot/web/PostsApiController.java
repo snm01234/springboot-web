@@ -24,7 +24,7 @@ public class PostsApiController {
         return  postsService.save(requestDto);
     }
 
-    @PreAuthorize("isAuthenticated() and (hasRole('ADMIN') or #requestDto.author == #user.name)")
+    //@PreAuthorize("isAuthenticated() and (hasRole('ADMIN') or #requestDto.author == #user.name)")
     @PutMapping("/api/v1/posts/{id}")
     public Long update(@PathVariable Long id, @RequestBody @Valid PostsSaveRequestDto requestDto, @LoginUser SessionUser user) {
         return postsService.update(id, requestDto);
